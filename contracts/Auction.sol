@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.0;
 
-contract Auction  {
+contract AuctionHouse    {
 
-    struct Auction {
+    // Definimos la estructura de la Subasta(Auction)
+    struct Auction  {
         uint256 id;
         uint256 itemId;
         address creator;
@@ -14,6 +15,9 @@ contract Auction  {
         bool finalized;
         bool deleted;
     }
+
+    // Definimos el diccionario de Subastas
+    mapping(uint256 => Auction) public lst_auctions;
 
     
 }
