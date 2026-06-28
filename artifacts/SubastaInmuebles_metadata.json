@@ -1,0 +1,531 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "nuevoPropietario",
+						"type": "address"
+					}
+				],
+				"name": "cambiarPropietario",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contadorSubastas",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "crearSubasta",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idItem",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ofertaMinima",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fechaCierre",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "superficieM2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cantHabitaciones",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cantBanios",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "anioConstruccion",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "tieneGarage",
+						"type": "bool"
+					},
+					{
+						"internalType": "enum SubastaInmuebles.TipoPropiedad",
+						"name": "tipoPropiedad",
+						"type": "uint8"
+					}
+				],
+				"name": "crearSubasta",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "eliminarSubasta",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "finalizarSubasta",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "lst_inmuebles",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "superficieM2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cantHabitaciones",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cantBanios",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "anioConstruccion",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "tieneGarage",
+						"type": "bool"
+					},
+					{
+						"internalType": "enum SubastaInmuebles.TipoPropiedad",
+						"name": "tipoPropiedad",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "lst_subastas",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "idItem",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "creador",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ofertaMinima",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fechaCierre",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ofertaMaxima",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "mejorPostor",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "finalizada",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "eliminada",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevaSuperficieM2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevaCantHabitaciones",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevaCantBanios",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevoAnioConstruccion",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "nuevoGarage",
+						"type": "bool"
+					},
+					{
+						"internalType": "enum SubastaInmuebles.TipoPropiedad",
+						"name": "nuevoTipo",
+						"type": "uint8"
+					}
+				],
+				"name": "modificarInmueble",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevaFechaCierre",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nuevoIdItem",
+						"type": "uint256"
+					}
+				],
+				"name": "modificarSubasta",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "obtenerInmueble",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "superficieM2",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cantHabitaciones",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cantBanios",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "anioConstruccion",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "tieneGarage",
+								"type": "bool"
+							},
+							{
+								"internalType": "enum SubastaInmuebles.TipoPropiedad",
+								"name": "tipoPropiedad",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct SubastaInmuebles.Inmueble",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "obtenerSubasta",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "idItem",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "creador",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "ofertaMinima",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "fechaCierre",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "ofertaMaxima",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "mejorPostor",
+								"type": "address"
+							},
+							{
+								"internalType": "bool",
+								"name": "finalizada",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "eliminada",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct CasaDeSubastas.Subasta",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "propietario",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "realizarOferta",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "retirarFondos",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "retirosPendientes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SubastaInmuebles.sol": "SubastaInmuebles"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/CasaDeSubastas.sol": {
+			"keccak256": "0xe3bb1941999217ae70aa7828edcd4382f20301516c81b2f266145ab5c69d1dc7",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://43a6a0cec1bab747877359893cd18504e3e6e86a12995016018a66d58f2da641",
+				"dweb:/ipfs/QmbJHHhbvFzwKoKQyeXUXSvAQacTKJhP9AZyuGX3nmcatD"
+			]
+		},
+		"contracts/SubastaInmuebles.sol": {
+			"keccak256": "0xe612611a65c0b279e23074f68ca507c18248c0f41cc2bcf29013dc606e06dedf",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://17ddb6e0bfc12c2938969f4b55eb3ba6956b0f19446ae49c2200dda1374010a9",
+				"dweb:/ipfs/QmR1aiGgkoYDReBMnD7Jj9zFaoo4XGn4RP9YVrCyHQXQBe"
+			]
+		}
+	},
+	"version": 1
+}
