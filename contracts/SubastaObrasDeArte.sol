@@ -50,6 +50,11 @@ contract SubastaObrasDeArte is CasaDeSubastas {
         return lst_obras[idSubasta];
     }
 
+    // Consultar el propietario actual (ganador) de la obra
+    function obtenerPropietarioActual(uint256 idSubasta) public view subastaExiste(idSubasta) returns (address) {
+        return propietarioActual[idSubasta];
+    }
+
     // Registrar la transferencia de propiedad al ganador
     function registrarTransferencia(uint256 idSubasta) public subastaExiste(idSubasta) {
         Subasta storage subasta = lst_subastas[idSubasta];

@@ -269,6 +269,25 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "idSubasta",
+						"type": "uint256"
+					}
+				],
+				"name": "obtenerPropietarioActual",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
 					}
@@ -463,11 +482,11 @@
 			]
 		},
 		"contracts/SubastaObrasDeArte.sol": {
-			"keccak256": "0x1c043171305a5d63b6933260cf7b0a8e42c3c036ffe0bda82206a3f32623ac78",
+			"keccak256": "0x5813130c08328a0dfcd77739410e40e520d9382f42ea365ff04bea2e8b8375e4",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://916d0680e96e53ff6ca48cef44599c975cfa775b90648257beef350e6636acab",
-				"dweb:/ipfs/QmTP14u5kRsfB49qa5DfaRfK9RBbHg7cHKLYukm394M1V3"
+				"bzz-raw://e35ef82df76b3cd9c07b4ae56392d87886b6ccaa235b855aa6744dc813da6b34",
+				"dweb:/ipfs/QmeLb6DPCkB57PZP2xFGmLqbALM3tKTB2kxWTzNt3QsWkW"
 			]
 		}
 	},
