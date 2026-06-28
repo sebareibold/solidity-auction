@@ -10,12 +10,16 @@ contract SubastaVehiculos is CasaDeSubastas {
         string marca;
         string modelo;
         string patente;
-        bool transferido;      // se marca true cuando se registra la transferencia al ganador
-        address propietarioActual; // a quien se le transfirió (el ganador)
     }
 
     // ------------------ Variables de Estado ------------------
     mapping(uint256 => Vehiculo) public lst_vehiculos;
+    // Registra la direccion del ganador una vez confirmada la transferencia.
+    // address(0) significa que el vehiculo aun no fue transferido.
+    mapping(uint256 => address) public propietarioActual;
+
+    // ------------------ Eventos ------------------
+    event VehiculoTransferido(uint256 indexed idSubasta, address indexed ganador, string patente);
 
     // ------------------ Funciones ------------------
 
@@ -44,9 +48,7 @@ contract SubastaVehiculos is CasaDeSubastas {
         lst_vehiculos[contadorSubastas - 1] = Vehiculo({
             marca: marca,
             modelo: modelo,
-            patente: patente,
-            transferido: false,
-            propietarioActual: address(0)
+            patente: patente
         });
     }
 
@@ -56,20 +58,25 @@ contract SubastaVehiculos is CasaDeSubastas {
     }
 
     // Registrar la transferencia del vehiculo al ganador
-    function transferirAlGanador(uint256 idSubasta) public subastaExiste(idSubasta) {
+    function registrarTransferencia(uint256 idSubasta) public subastaExiste(idSubasta) {
         Subasta storage subasta = lst_subastas[idSubasta];
 
         require(subasta.finalizada, "La subasta debe estar finalizada para transferir.");
-        require(!subasta.eliminada, "La subasta fue eliminada.");
         require(
             msg.sender == subasta.creador || msg.sender == propietario,
             "Solo el creador o el propietario pueden registrar la transferencia."
         );
         require(subasta.mejorPostor != address(0), "No hubo ganador en la subasta.");
-        require(!lst_vehiculos[idSubasta].transferido, "El vehiculo ya fue transferido.");
+        require(propietarioActual[idSubasta] == address(0), "El vehiculo ya fue transferido.");
 
-        Vehiculo storage vehiculo = lst_vehiculos[idSubasta];
-        vehiculo.transferido = true;
-        vehiculo.propietarioActual = subasta.mejorPostor;
+        propietarioActual[idSubasta] = subasta.mejorPostor;
+
+        emit VehiculoTransferido(idSubasta, subasta.mejorPostor, lst_vehiculos[idSubasta].patente);
     }
+
+    // Consultar el propietario actual (ganador) del vehiculo
+    function obtenerPropietarioActual(uint256 idSubasta) public view subastaExiste(idSubasta) returns (address) {
+        return propietarioActual[idSubasta];
+    }
+
 }
