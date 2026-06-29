@@ -1,54 +1,90 @@
 # solidity-auction
 
-Smart contract para un sistema de subastas descentralizado implementado en Solidity sobre Ethereum.
+Smart contracts para un sistema de subastas descentralizado implementado en Solidity sobre Ethereum.
 
-## Descripción
+## Descripcion
 
-Proyecto académico desarrollado para la materia **Tópicos Formales en Criptografía** de la Facultad de Informática, Universidad Nacional del Comahue (2026).
+Proyecto academico desarrollado para la materia **Topicos Formales en Criptografia** de la Facultad de Informatica, Universidad Nacional del Comahue (2026).
 
-El contrato implementa un sistema de subastas descentralizado para la **Casa de Subastas Digitales "Isla Null"**, permitiendo a los usuarios crear subastas, realizar ofertas en ETH y recuperar fondos, sin necesidad de una autoridad central.
+El sistema implementa una plataforma descentralizada para la **Casa de Subastas Digitales "Isla Null"**, permitiendo crear subastas, recibir ofertas en ETH, determinar ganadores y retornar fondos a participantes no ganadores, sin necesidad de una autoridad central.
 
-## Tecnologías
+## Tecnologias
 
 - **Lenguaje:** Solidity `^0.8.x`
 - **Plataforma:** Ethereum (EVM)
 - **IDE:** [Remix](https://remix.ethereum.org)
-
-## Funcionalidades
-
-- Crear subastas con un valor mínimo y fecha de finalización
-- Realizar ofertas en ETH (deben superar la oferta más alta registrada)
-- Consultar la oferta más alta actual
-- Finalizar subastas y determinar al ganador
-- Retirar fondos para los participantes no ganadores
+- **Simulacion:** JavaScript VM (sin deploy real en blockchain)
 
 ## Estructura del Proyecto
 
 ```
 solidity-auction/
 ├── contracts/
-│   └── Auction.sol        # Contrato base
-├── docs/
-│   └── informe.pdf        # Informe académico
+│   ├── CasaDeSubastas.sol       # Contrato base con logica general de subastas
+│   ├── SubastaVehiculos.sol     # Subgrupo A: subastas de vehiculos (marca, modelo, patente)
+│   ├── SubastaObrasDeArte.sol   # Subgrupo B: subastas de obras de arte (identificacion, autor, certificado)
+│   └── SubastaInmuebles.sol     # Subgrupo C: subastas de inmuebles (partida catastral, direccion, superficie)
 └── README.md
 ```
 
-## Cómo Ejecutarlo
+## Arquitectura
+
+El sistema esta organizado en herencia de contratos:
+
+- **`CasaDeSubastas`** — contrato base con toda la logica central:
+  - Crear subastas (con deposito minimo de 500 wei)
+  - Realizar ofertas en ETH (deben superar la oferta maxima actual)
+  - Finalizar subastas y transferir fondos al creador
+  - Retirar fondos para postores no ganadores (patron pull payment)
+  - Eliminar subastas sin ofertas activas
+  - Modificar fecha de cierre e item de subastas sin ofertas
+  - Cambiar el propietario del contrato
+
+- **`SubastaVehiculos`** — extiende `CasaDeSubastas` con:
+  - Campos: marca, modelo, patente
+  - `obtenerVehiculo(idSubasta)`: consulta informacion del vehiculo
+  - `registrarTransferencia(idSubasta)`: registra al ganador como nuevo propietario
+  - `obtenerPropietarioActual(idSubasta)`: consulta quien es el propietario actual
+
+- **`SubastaObrasDeArte`** — extiende `CasaDeSubastas` con:
+  - Campos: identificacion de la obra, autor, certificado de autenticidad
+  - `obtenerObraDeArte(idSubasta)`: consulta informacion de la obra
+  - `registrarTransferencia(idSubasta)`: registra la transferencia de propiedad al ganador
+  - `obtenerPropietarioActual(idSubasta)`: consulta quien es el propietario actual
+
+- **`SubastaInmuebles`** — extiende `CasaDeSubastas` con:
+  - Campos: partida catastral, direccion, superficie (m2)
+  - `obtenerInmueble(idSubasta)`: consulta informacion del inmueble
+  - `registrarTransferencia(idSubasta)`: registra la adjudicacion al ganador
+  - `obtenerPropietarioActual(idSubasta)`: consulta quien es el propietario actual
+
+## Funcionalidades Principales
+
+- Crear subastas indicando el bien, valor minimo y fecha de finalizacion
+- Realizar ofertas en ETH que deben superar la oferta mas alta registrada
+- Consultar la oferta maxima actual y el mejor postor
+- Finalizar subastas y determinar automaticamente al ganador
+- Retirar fondos para participantes cuyas ofertas fueron superadas
+- Registrar la transferencia del bien al ganador una vez finalizada la subasta
+
+## Como Ejecutarlo
 
 1. Abrir [Remix IDE](https://remix.ethereum.org)
-2. Importar `contracts/Auction.sol`
+2. Importar todos los contratos de la carpeta `contracts/`
 3. Compilar con Solidity `^0.8.x`
-4. Desplegar usando el entorno JavaScript VM
+4. Desplegar el contrato del tipo de subasta deseado usando el entorno JavaScript VM
 5. Interactuar con el contrato desde la interfaz de Remix
 
 ## Autores
 
-| Apellido y Nombre | Legajo |
-|-------------------|--------|
-| Reibold, Sebastian Alejandro | FAI-3854 |
-| Fernandez Gramajo, Bautista | FAI-3874 |
-| Kissner, Davor | FAI-3185 |
+Proyecto realizado por 3 integrantes del Grupo Davor-Bautista-Sebastian:
+
+| Apellido y Nombre | Legajo | GitHub |
+|-------------------|--------|--------|
+| Reibold, Sebastian Alejandro | FAI-3854 | [@sebareibold](https://github.com/sebareibold) |
+| Fernandez Gramajo, Bautista | FAI-3874 | [@bautistafg](https://github.com/bautistafg) |
+| Kissner, Davor | FAI-3185 | [@Davidenko01](https://github.com/Davidenko01) |
 
 ## Licencia
 
-Proyecto de uso académico.
+Proyecto de uso academico — Universidad Nacional del Comahue, 2026.
