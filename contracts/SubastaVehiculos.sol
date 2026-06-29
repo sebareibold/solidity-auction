@@ -18,8 +18,6 @@ contract SubastaVehiculos is CasaDeSubastas {
     // address(0) significa que el vehiculo aun no fue transferido.
     mapping(uint256 => address) public propietarioActual;
 
-    // ------------------ Eventos ------------------
-    event VehiculoTransferido(uint256 indexed idSubasta, address indexed ganador, string patente);
 
     // ------------------ Funciones ------------------
 
@@ -63,15 +61,13 @@ contract SubastaVehiculos is CasaDeSubastas {
 
         require(subasta.finalizada, "La subasta debe estar finalizada para transferir.");
         require(
-            msg.sender == subasta.creador || msg.sender == propietario,
+            msg.sender == subasta.creador || msg.sender == propietario || msg.sender == subasta.mejorPostor,
             "Solo el creador o el propietario pueden registrar la transferencia."
         );
         require(subasta.mejorPostor != address(0), "No hubo ganador en la subasta.");
         require(propietarioActual[idSubasta] == address(0), "El vehiculo ya fue transferido.");
 
         propietarioActual[idSubasta] = subasta.mejorPostor;
-
-        emit VehiculoTransferido(idSubasta, subasta.mejorPostor, lst_vehiculos[idSubasta].patente);
     }
 
     // Consultar el propietario actual (ganador) del vehiculo
